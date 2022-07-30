@@ -84,7 +84,7 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("Projectile Prefab. This is the prefab spawned when the weapon shoots.")]
         [SerializeField]
         private GameObject prefabProjectile;
-        
+
         [Tooltip("The AnimatorController a player character needs to use while wielding this weapon.")]
         [SerializeField] 
         public RuntimeAnimatorController controller;
@@ -195,11 +195,13 @@ namespace InfimaGames.LowPolyShooterPack
         /// The player character's camera.
         /// </summary>
         private Transform playerCamera;
-        
+
+        public Transform projectileSpawnLocation;
+
         #endregion
 
         #region UNITY
-        
+
         protected override void Awake()
         {
             //Get Animator.
@@ -449,7 +451,7 @@ namespace InfimaGames.LowPolyShooterPack
                 spreadValue = playerCamera.TransformDirection(spreadValue);
 
                 //Spawn projectile from the projectile spawn point.
-                GameObject projectile = Instantiate(prefabProjectile, playerCamera.position, Quaternion.Euler(playerCamera.eulerAngles + spreadValue));
+                GameObject projectile = Instantiate(prefabProjectile, projectileSpawnLocation.position, Quaternion.Euler(playerCamera.eulerAngles + spreadValue));
                 //Add velocity to the projectile.
                 projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileImpulse;
             }
