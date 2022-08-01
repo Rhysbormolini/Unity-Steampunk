@@ -23,6 +23,8 @@ namespace InfimaGames.LowPolyShooterPack
         
         [Title(label: "Firing")]
 
+        public Transform projectileSpawnLocation;
+
         [Tooltip("Is this weapon automatic? If yes, then holding down the firing button will continuously fire.")]
         [SerializeField] 
         private bool automatic;
@@ -195,8 +197,6 @@ namespace InfimaGames.LowPolyShooterPack
         /// The player character's camera.
         /// </summary>
         private Transform playerCamera;
-
-        public Transform projectileSpawnLocation;
 
         #endregion
 
