@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCamera : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
     public int camMode;
-    public GameObject Cam;
+    public GameObject firstPerson, thirdPerson;
+    public KeyCode KeyBind;
 
     private void Awake()
     {
@@ -14,7 +15,7 @@ public class MoveCamera : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyBind))
         {
             if (camMode == 1)
             {
@@ -34,12 +35,14 @@ public class MoveCamera : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         if (camMode == 0)
         {
-            Cam.transform.localPosition = new Vector3(0, 0, 0);
+            firstPerson.SetActive(true);
+            thirdPerson.SetActive(false);
         }
-        
+
         if (camMode == 1)
         {
-            Cam.transform.localPosition = new Vector3(0.755f, 0, -1.129f);
+            firstPerson.SetActive(false);
+            thirdPerson.SetActive(true);
         }
     }
     //void firstPersonCamera()
